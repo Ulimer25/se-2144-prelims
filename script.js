@@ -1,7 +1,7 @@
 let display = document.getElementById('display');
 let isOn = true;
 
-const language = "Hello!";
+const language = ["Hello!", "Kumusta!", "Hola!"];
 
 function appendToDisplay(value) {
     if (isOn) {
@@ -46,9 +46,10 @@ function turnOff() {
 
 function showHello() {
     if (isOn) {
-        display.value = language;
+        display.value = language[Math.floor(Math.random() * language.length)];
         setTimeout(() => {
             display.value = '';
         }, 2000);
     }
 }
+
