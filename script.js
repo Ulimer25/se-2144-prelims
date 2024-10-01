@@ -11,7 +11,7 @@ function appendToDisplay(value) {
         
         if (isOperator && hasOperator) return; // Tjis will prevent multiple operators.
         if (value === '.' && lastChar === '.') return; // And this will prevent multiple decimal points.
-        if (display.value.length < 8) {
+        if (display.value.length <= 8) {
             display.value += value;
         }
     }
@@ -31,6 +31,10 @@ function calculate() {
             display.value = eval(display.value);
         } catch {
             display.value = 'Error';
+            setTimeout(() => {
+                display.value = '';
+                isOn = true;
+            }, 2000);
         }
     }
 }
