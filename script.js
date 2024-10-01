@@ -3,6 +3,9 @@ let isOn = true;
 
 const language = ["Hello!", "Kumusta!", "Hola!"];
 
+document.querySelector(".ac-btn").addEventListener("click", turnOn);
+document.querySelector(".bye-btn").addEventListener("click", turnOff)
+
 function appendToDisplay(value) {
     if (isOn) {
         const lastChar = display.value[display.value.length - 1];
@@ -34,18 +37,37 @@ function calculate() {
             setTimeout(() => {
                 display.value = '';
                 isOn = true;
-            }, 2000);
+            }, 1000);
         }
     }
 }
 
 function turnOff() {
     isOn = false;
+    const btn = document.querySelectorAll("button")
     display.value = 'Goodbye!';
+    
     setTimeout(() => {
-        display.value = '';
+        btn.forEach(btns => {
+            if (!btns.classList.contains("ac-btn")) {
+                btn.disabled = true
+                display.value = ""
+            }
+        });
+    }, 1000);
+}
+
+function turnOn() {
+    const btn = document.querySelectorAll("button")
+    display.value = ""
+
+    setTimeout(() => {
         isOn = true;
-    }, 2000);
+        btn.forEach(btns => {
+            btn.disabled = true
+            display.value = ""
+        });
+    }, 500);
 }
 
 function showHello() {
